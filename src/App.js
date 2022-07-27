@@ -7,7 +7,7 @@ function App() {
   return <div className="App">
     <label className="label">Name</label>
     <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-    <Welcome name={name} />
+    <Welcome>{name}</Welcome>
   </div>;
 }
 
