@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Welcome from './components/Welcome'
 import './App.css'
 
 function App() {
@@ -6,7 +7,7 @@ function App() {
   return <div className="App">
     <label className="label">Name</label>
     <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-    <p>Hi {name}</p>
+    <Welcome name={name} />
   </div>;
 }
 
