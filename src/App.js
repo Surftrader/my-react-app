@@ -3,13 +3,23 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const [password, setPassword] = useState('')
+  const [isShow, setIsShow] = useState(false)
   return <div className="App">
-    <input
-      type="text"
-      value={password}
-      onChange={(e) => setPassword(e.target.value)} />
-    {password.length < 8 ? <div>Simple</div> : <div>Dificult</div>}
+    <button
+      type="button"
+      onClick={() => setIsShow(true)}>
+      Show
+    </button>
+    {isShow && (
+      <div>
+        The important message is here
+      <button
+          type="button"
+          onClick={() => setIsShow(false)}>
+          Close
+      </button>
+      </div>
+    )}
   </div>;
 }
 
