@@ -1,25 +1,37 @@
+import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const sendForm = () => {
-    alert('Form was sent');
+  const [todos, setTodos] = useState([
+    {
+      id: 1,
+      item: 'Go to the mall'
+    },
+    {
+      id: 2,
+      item: 'Pick up clothes from the dry cleaners'
+    },
+    {
+      id: 3,
+      item: 'Write todos'
+    },
+  ])
+
+  const deleteTodo = (id) => {
+    const newTodos = todos.filter((todo) => todo.id !== id)
+    setTodos(newTodos)
   }
-  const mouseEnter = () => {
-    console.log('Mouse enter');
-  }
-  const mouseLeave = () => {
-    console.log('Mouse leave');
-  }
+
   return (
     <div className="App" >
-      <button
-        type="button"
-        onClick={sendForm}
-        onMouseEnter={mouseEnter}
-        onMouseLeave={mouseLeave}
-      >
-        Send
-      </button>
+      <ul>
+        {todos.map((todo) => (
+          <li key={todo.id.toString()}>
+            {todo.item}
+            <button type="button" onClick={() => deleteTodo(todo.id)}>Delete</button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
