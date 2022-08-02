@@ -1,25 +1,11 @@
-
-import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const [isShow, setIsShow] = useState(false)
+  const num = [1, 2, 3, 4, 5]
   return <div className="App">
-    <button
-      type="button"
-      onClick={() => setIsShow(true)}>
-      Show
-    </button>
-    {isShow && (
-      <div>
-        The important message is here
-      <button
-          type="button"
-          onClick={() => setIsShow(false)}>
-          Close
-      </button>
-      </div>
-    )}
+    <ul>
+      {num.map((value) => <li key={value.toString()}>{value}</li>)}
+    </ul>
   </div>;
 }
 
