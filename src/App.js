@@ -1,23 +1,29 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 function App() {
   const [counter, setCounter] = useState(0)
-  const [myDate, setMyDate] = useState(new Date())
+  const [name, setName] = useState('')
 
   const increaseCounter = () => {
     setCounter((prev) => prev + 1)
-    setCounter((prev) => prev + 1)
-    setMyDate(new Date())
   }
 
-  console.log('render')
+  useEffect(() => {
+    console.log("Changed at ", new Date().toISOString())
+  })
 
   return (
     <div className="App" >
-      <div>{myDate.toISOString()}</div>
-      {counter}
-      <button type="button" onClick={increaseCounter}>Increase</button>
+      <div>
+        <label>Name</label>
+        <input type="text" onChange={(e) => setName(e.target.value)} />
+        <p>{name}</p>
+      </div>
+      <div>
+        {counter}
+        <button type="button" onClick={increaseCounter}>+1</button>
+      </div>
     </div>
   );
 }
