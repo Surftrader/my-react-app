@@ -1,19 +1,15 @@
-import { useCallback, useState, useEffect } from 'react'
+import { useState, useMemo } from 'react'
 import './App.css'
-import CustomButton from './components/CustomButton'
-import debounce from 'lodash.debounce'
 
 function App() {
   const [searchString, setSearchString] = useState('')
   const [someString, setSomeString] = useState('')
 
-  const apiCall = useCallback(debounce((search) => {
-    console.log('Search', search)
-  }, 300), [])
+  const reverseSomeString = useMemo(() => {
+    console.log('Calculation')
 
-  useEffect(() => {
-    apiCall(searchString)
-  }, [searchString, apiCall])
+    return someString.split("").reverse().join("")
+  }, [someString])
 
   return (
     <div className="App" >
@@ -31,12 +27,7 @@ function App() {
           value={someString}
           onChange={(e) => setSomeString(e.target.value)} />
       </div>
-      <div>
-        <CustomButton
-          title="Submit"
-          onClick={apiCall}
-        />
-      </div>
+      <div>{reverseSomeString}</div>
     </div>
   );
 }
