@@ -1,31 +1,26 @@
-import { useState, useMemo } from 'react'
+import { useState, useRef } from 'react'
 import './App.css'
-import List from './components/List'
 
 function App() {
+  const inputRef = useRef(null)
   const [searchString, setSearchString] = useState('')
-  const [someString, setSomeString] = useState('')
-  const [items] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 
-  const filteredItems = useMemo(() => items.filter(item => item % 2 === 0), [items])
-
+  const setFocus = () => {
+    inputRef.current ?.focus()
+  }
   return (
     <div className="App" >
       <div>
         <label className="label">Search:</label>
         <input
+          ref={inputRef}
           type="text"
           value={searchString}
           onChange={(e) => setSearchString(e.target.value)} />
       </div>
       <div>
-        <label className="label">Some:</label>
-        <input
-          type="text"
-          value={someString}
-          onChange={(e) => setSomeString(e.target.value)} />
+        <button type="button" onClick={setFocus}>Set focus</button>
       </div>
-      <div><List data={filteredItems} /></div>
     </div>
   );
 }
