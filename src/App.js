@@ -1,16 +1,18 @@
-
+import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const sendForm = (e) => {
-    e.preventDefault();
-    console.log('Form was sent')
+  const [counter, setCounter] = useState(0)
+
+  const increaseCounter = () => {
+    setCounter((prev) => prev + 1)
+    setCounter((prev) => prev + 1)
   }
+
   return (
     <div className="App" >
-      <form onSubmit={sendForm}>
-        <button type="submit">Send</button>
-      </form>
+      {counter}
+      <button type="button" onClick={increaseCounter}>Increase</button>
     </div>
   );
 }
