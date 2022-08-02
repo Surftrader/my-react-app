@@ -1,14 +1,19 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useState, useEffect } from 'react'
 import './App.css'
 import CustomButton from './components/CustomButton'
+import debounce from 'lodash.debounce'
 
 function App() {
   const [searchString, setSearchString] = useState('')
   const [someString, setSomeString] = useState('')
 
-  const apiCall = useCallback(() => {
-    console.log('Submit')
-  }, [])
+  const apiCall = useCallback(debounce((search) => {
+    console.log('Search', search)
+  }, 300), [])
+
+  useEffect(() => {
+    apiCall(searchString)
+  }, [searchString, apiCall])
 
   return (
     <div className="App" >
