@@ -1,15 +1,13 @@
 import { useState, useMemo } from 'react'
 import './App.css'
+import List from './components/List'
 
 function App() {
   const [searchString, setSearchString] = useState('')
   const [someString, setSomeString] = useState('')
+  const [items] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 
-  const reverseSomeString = useMemo(() => {
-    console.log('Calculation')
-
-    return someString.split("").reverse().join("")
-  }, [someString])
+  const filteredItems = useMemo(() => items.filter(item => item % 2 === 0), [items])
 
   return (
     <div className="App" >
@@ -27,7 +25,7 @@ function App() {
           value={someString}
           onChange={(e) => setSomeString(e.target.value)} />
       </div>
-      <div>{reverseSomeString}</div>
+      <div><List data={filteredItems} /></div>
     </div>
   );
 }
