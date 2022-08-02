@@ -11,7 +11,7 @@ function App() {
 
   useEffect(() => {
     console.log("Changed at ", new Date().toISOString())
-  })
+  }, [counter])
 
   return (
     <div className="App" >
