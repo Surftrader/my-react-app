@@ -1,21 +1,19 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import './App.css'
+import TestUnmount from './components/TestUnmount'
 
 function App() {
   const [counter, setCounter] = useState(0)
   const [name, setName] = useState('')
+  const [isShow, setIsShow] = useState(false)
 
   const increaseCounter = () => {
     setCounter((prev) => prev + 1)
   }
 
-  useEffect(() => {
-    console.log("It is called one time");
-
-    fetch('https://jsonplaceholder.typicode.com/todos/1')
-      .then(response => response.json())
-      .then(json => console.log(json))
-  }, [])
+  const toggle = () => {
+    setIsShow((prev) => !prev)
+  }
 
   return (
     <div className="App" >
@@ -27,6 +25,10 @@ function App() {
       <div>
         {counter}
         <button type="button" onClick={increaseCounter}>+1</button>
+      </div>
+      <div>
+        <button type="button" onClick={toggle}>toggle</button>
+        {isShow && <TestUnmount />}
       </div>
     </div>
   );
