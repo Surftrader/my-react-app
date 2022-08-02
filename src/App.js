@@ -1,18 +1,14 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import './App.css'
-import TestUnmount from './components/TestUnmount'
+import CustomButton from './components/CustomButton'
 
 function App() {
   const [searchString, setSearchString] = useState('')
   const [someString, setSomeString] = useState('')
 
   const apiCall = useCallback(() => {
-    console.log('Search string: ', searchString)
-  }, [searchString])
-
-  useEffect(() => {
-    apiCall()
-  }, [apiCall])
+    console.log('Submit')
+  }, [])
 
   return (
     <div className="App" >
@@ -29,6 +25,12 @@ function App() {
           type="text"
           value={someString}
           onChange={(e) => setSomeString(e.target.value)} />
+      </div>
+      <div>
+        <CustomButton
+          title="Submit"
+          onClick={apiCall}
+        />
       </div>
     </div>
   );
